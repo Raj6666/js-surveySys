@@ -1,0 +1,148 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: Husiyuan
+ * @Date: 2020-09-09 11:57:24
+ * @LastEditors: Husiyuan
+ * @LastEditTime: 2020-09-11 11:58:04
+-->
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>1</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet/less" type="text/css" href="survey.less" />
+    <link rel="stylesheet" type="text/css" href="./lib/jquery.layer/skin/layer.css" />
+    <script src="./js/combo.corelibs.js"></script>
+</head>
+
+<body>
+    <div class="user-main">
+        <div class="title-wrapper">
+            <p>Hi, 请完善您的信息</p>
+            <p class="sub-title">完善信息即可获得优惠券</p>
+            <p class="page">(<span class="current-page">1</span>/<span class="total-page">3</span>)</p>
+        </div>
+        <div class="survey-wrapper" id="survey-wrapper">
+        </div>
+
+        <div class="recommend-btns">
+            <a class="go-previous go-btn">上一页</a>
+            <a class="go-next go-btn">下一页</a>
+            <a class="go-submit go-btn">提交</a>
+        </div>
+        <script type="text/x-handlebars-template" id="surveyTemplate">
+            {{ _.each(recordList, function(item, index){ }}
+            {{    var pageIndex }}
+            {{    if(index == 0) { pageIndex = 0 } }}
+            {{    if(index <= (recordList.length - 1) /2 && index != 0) { pageIndex = 1} }}
+            {{    if(index > (recordList.length - 1) /2) { pageIndex = 2 } }}
+
+            <div class="page" data-page="{{=pageIndex}}">
+                <div class="top-content">
+                    <div class="survey-title">{{=item.question}} {{if(item.choicesType==2) { }}<div>(可多选)</div>{{ } }}</div>
+                </div>
+                <div class="survey-content">
+                    <!-- 多层选项 -->
+                    {{ if(item.choices[0] && item.choices[0].choices.length > 0) { }}
+                        {{  _.each(item.choices, function(choice, index){ }}
+                        <div class="row first-quest"}>
+                            <div class="row-title" data-id="{{=choice.id}}">{{=choice.choiceName}}</div>
+                            <div class="content">
+                                {{ _.each(choice.choices, function(subItem, index){ }}
+                                <div class="item" data-id="{{=subItem.id}}"  data-style="{{=subItem.style}}" data-name="{{=subItem.choiceName}}">{{=subItem.choiceName}}</div>
+                                {{ }) }}
+                            </div>
+                        </div>
+                        {{ }) }}
+                    {{ } else { }}
+                    <!-- 单层选项 -->
+                        {{if (item.choicesType==2) { }}
+                        <div class="row">
+                        {{ } else { }}
+                        <div class="row single-select">
+                        {{ } }}
+                            <div class="single-content content">
+                                {{ if(item) { _.each(item.choices, function(subItem, index){ }}
+                                <div class="item" data-id="{{=subItem.id}}"  data-style="{{=subItem.style}}" data-name="{{=subItem.choiceName}}" data-choices="{{=subItem.choices}}">{{=subItem.choiceName}}</div>
+                                {{ }) } }}
+                            </div>
+                            <!-- <div class="add-content single-content content">
+                                <div class="item selected">淘宝</div>
+                                <div class="item">天猫</div>
+                                <div class="item">天猫</div>
+                                <div class="item">天猫</div>
+                            </div> -->
+                        </div>
+                    {{ } }}
+                </div>
+            </div>
+            {{ }) }}
+        </script>
+        <script type="text/x-handlebars-template" id="simpleSurveyTemplate">
+            {{ _.each(recordList, function(item, index){ }}
+            {{    var pageIndex }}
+            {{    if(index == 0) { pageIndex = 0 } }}
+            {{    if(index > 0) { pageIndex = 1} }}
+
+            <div class="page" data-page="{{=pageIndex}}">
+                <div class="top-content">
+                    <div class="survey-title">{{=item.question}} {{if(item.choicesType==2) { }}<div>(可多选)</div>{{ } }}</div>
+                </div>
+                <div class="survey-content">
+                    <!-- 多层选项 -->
+                    {{ if(item.choices[0] && item.choices[0].choices.length > 0) { }}
+                        {{  _.each(item.choices, function(choice, index){ }}
+                        <div class="row first-quest"}>
+                            <div class="row-title" data-id="{{=choice.id}}">{{=choice.choiceName}}</div>
+                            <div class="content">
+                                {{ _.each(choice.choices, function(subItem, index){ }}
+                                <div class="item" data-id="{{=subItem.id}}"  data-style="{{=subItem.style}}" data-name="{{=subItem.choiceName}}">{{=subItem.choiceName}}</div>
+                                {{ }) }}
+                            </div>
+                        </div>
+                        {{ }) }}
+                    {{ } else { }}
+                    <!-- 单层选项 -->
+                        {{if (item.choicesType==2) { }}
+                        <div class="row">
+                        {{ } else { }}
+                        <div class="row single-select">
+                        {{ } }}
+                            <div class="single-content content">
+                                {{ if(item) { _.each(item.choices, function(subItem, index){ }}
+                                <div class="item" data-id="{{=subItem.id}}"  data-style="{{=subItem.style}}" data-name="{{=subItem.choiceName}}" data-choices="{{=subItem.choices}}">{{=subItem.choiceName}}</div>
+                                {{ }) } }}
+                            </div>
+
+                        </div>
+                    {{ } }}
+                </div>
+            </div>
+            {{ }) }}
+        </script>
+    </div>
+</body>
+<script>
+    require(['./js/less.min.js', './lib/jquery.layer/layer.min', './survey'], function () {
+    });
+</script>
+<script type="text/javascript">
+    _.templateSettings = {
+        evaluate: /\{\{(.+?)\}\}/g,
+        interpolate: /\{\{=(.+?)\}\}/g,
+        escape: /\{\{-(.+?)\}\}/g
+    }
+    _gobal_cityPath = '/${cityMarketCode}';
+    _gobal_marketes = '${cityMarkets}';
+</script>
+</html>

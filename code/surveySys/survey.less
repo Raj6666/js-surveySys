@@ -1,0 +1,176 @@
+.user-main{
+    min-height: 700px;
+    .title-wrapper{
+        text-align: center;
+        color: #6C6C6C;
+        letter-spacing: 0;
+        font-family: HiraginoSansGB-W3;
+        p:nth-child(1){
+            font-size: 20px;
+            line-height: 30px;
+            color: #333333;
+        }
+        p:nth-child(2){
+            margin-top: 17px;
+            line-height: 18px;
+        }
+        .page{
+            margin-top: 8px;
+            font-family: ArialMT;
+            line-height: 14px;
+            .current-page{
+                color: #EF3664;
+            }
+        }
+    }
+    .survey-wrapper{
+        background-color: #fff;
+        margin-top: 20px;
+        .page {
+            display: block;
+        }
+        .top-content {
+            overflow: hidden;
+            margin-top: 2%;
+        }
+        .survey-title {
+            display: flex;
+            align-items: baseline;
+            float: left;
+            font-size: 16px;
+            color: #333333;
+            padding-left: 10px;
+            height: 24px;
+            line-height: 24px;
+            position: relative;
+            &::before {
+                position: absolute;
+                content: '*';
+                left: 0;
+                top: 0;
+                width: 2px;
+                height: 18px;
+                color: #FB658A;
+            }
+            div{
+                font-size: 12px;
+                color: #6c6c6c;
+                line-height: 18px;
+                height: 18px;
+                margin-left: 10px;
+                font-family: HiraginoSansGB-W3;
+            }
+        }
+        .survey-content{
+            background-color: #F5F5F5;
+            padding: 0 2.3%;
+        }
+        .row{
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            font-family: HiraginoSansGB-W3;
+            min-height: 85.65px;
+        }
+        .row-title{
+            margin-top: 1.5%;
+            font-size: 14px;
+            line-height: 21px;
+            text-align: left;
+            color: #333333;
+        }
+        .content{
+           display: flex;
+           flex-wrap: wrap;
+           padding: 1.1% 0 2.1% 0;
+           .item {
+                min-width: 100px;
+                line-height: 18px;
+                padding: .9% 3%;
+                margin-right: 0.8%;
+                margin-top: 1%;
+                box-sizing: border-box;
+                text-align: center;
+                border: 1px solid #ffffff;
+                background-color: #ffffff;
+                color: #6C6C6C;
+                cursor: pointer;
+           }
+           .selected {
+               border: 1px solid #FB658A !important;
+               color: #EF3664;
+               background: url(img/checkbox.png) no-repeat 100% 100% #ffffff;
+           }
+        }
+        .single-content{
+            display: flex;
+            padding: 2.1% 0;
+        }
+        .add-content {
+            position: absolute;
+            bottom: 0;
+            .sub-item{
+                margin-right: 0;
+                padding: 1.8% 3%;
+                border: 1px solid #F5F5F5;
+                z-index: 2;
+            }
+            input{
+                width: 200px;
+                border: 1px solid #E5E5E5;
+                height: 25px;
+                padding: 5px 20px;
+            }
+        }
+    }
+    .angle{
+        width: 20px;
+        height: 20px;
+        transform: rotate(-315deg) translateX(-50%);
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 30%;
+    }
+    .recommend-btns {
+        display: flex;
+        justify-content: space-around;
+        width: 60%;
+        margin: 30px auto 0;
+        overflow: hidden;
+        .go-btn {
+            display: none;
+            width: 160px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #fb658a;
+            font-size: 14px;
+            color: #fff;
+            font-family: HiraginoSansGB-W3;
+            cursor: pointer;
+        }
+        .go-next{
+            display: block;
+        }
+    }
+}
+
+/**
+ 提示入口
+*/ 
+.info-collect-wrapper{
+    position: relative;
+    a:hover::after{
+        content: '';
+        width: 120px;
+        height: 43px;
+        // background: url(img/fuwu/infoCollect.png) top center;
+        background: url(img/fuwu/infoCollect_coupon.png) top center;
+        background-size: 100% auto;
+        position: absolute;
+        top: 20px;
+        left: 19px;
+        z-index: 99999;
+    }
+}
